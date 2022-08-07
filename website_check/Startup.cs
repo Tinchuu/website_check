@@ -33,6 +33,11 @@ namespace website_check
                 options.Version = "V1";
 
             });
+
+            services.AddHttpClient(Configuration["RedditClientName"], configureClient: client =>
+            {
+                client.BaseAddress = new Uri(Configuration["RedditAddress"]);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

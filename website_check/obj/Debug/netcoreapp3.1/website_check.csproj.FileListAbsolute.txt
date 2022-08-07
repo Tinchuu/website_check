@@ -30,3 +30,5 @@ C:\Users\kapst\source\repos\website_check\website_check\bin\Debug\netcoreapp3.1\
 C:\Users\kapst\source\repos\website_check\website_check\bin\Debug\netcoreapp3.1\YamlDotNet.dll
 C:\Users\kapst\source\repos\website_check\website_check\obj\Debug\netcoreapp3.1\website_check.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\kapst\source\repos\website_check\website_check\obj\Debug\netcoreapp3.1\website_check.csproj.CopyComplete
+C:\Users\kapst\source\repos\website_check\website_check\bin\Debug\netcoreapp3.1\website_check.xml
+C:\Users\kapst\source\repos\website_check\website_check\obj\Debug\netcoreapp3.1\website_check.xml
