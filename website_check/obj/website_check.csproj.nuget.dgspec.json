@@ -47,6 +47,10 @@
             "NSwag.AspNetCore": {
               "target": "Package",
               "version": "[13.16.1, )"
+            },
+            "SQLite": {
+              "target": "Package",
+              "version": "[3.13.0, )"
             }
           },
           "imports": [
