@@ -29,7 +29,7 @@ namespace website_check
 
             services.AddSwaggerDocument(options =>
             {
-                options.DocumentName = "My Amazing API";
+                options.DocumentName = "Website Checker";
                 options.Version = "V1";
 
             });

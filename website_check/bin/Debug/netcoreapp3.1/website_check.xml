@@ -45,17 +45,16 @@
             </summary>
             <returns>A JSON object representing the hot feed in reddit</returns>
         </member>
-        <member name="T:website_check.Controllers.WeatherForecastController">
-            <summary>
-            This is the weather forecast controller that comes as a default from the project template when creating
-            a new c# Web API application.
-            </summary>
+        <member name="M:website_check.Controllers.TestController.#ctor(System.Net.Http.IHttpClientFactory)">
+            <summary />
         </member>
-        <member name="M:website_check.Controllers.WeatherForecastController.Get">
+        <member name="M:website_check.Controllers.TestController.GetSum(System.Int32,System.Int32)">
             <summary>
-            This endpoint takes no arguments, and gives you the weather forecast
+            Adds two numbers together
             </summary>
-            <returns>A JSON object describing the weather forecast</returns>
+            <param name="left">The number on the left, which must be a positive integer</param>
+            <param name="right">The number on the right, which must be a positive integer</param>
+            <returns>The sum of the input numbers</returns>
         </member>
     </members>
 </doc>
