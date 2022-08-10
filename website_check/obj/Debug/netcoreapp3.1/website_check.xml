@@ -48,13 +48,11 @@
         <member name="M:website_check.Controllers.TestController.#ctor(System.Net.Http.IHttpClientFactory)">
             <summary />
         </member>
-        <member name="M:website_check.Controllers.TestController.GetSum(System.Int32,System.Int32)">
+        <member name="M:website_check.Controllers.TestController.GetMalware">
             <summary>
-            Adds two numbers together
+            Gets the raw JSON for the hot feed in reddit
             </summary>
-            <param name="left">The number on the left, which must be a positive integer</param>
-            <param name="right">The number on the right, which must be a positive integer</param>
-            <returns>The sum of the input numbers</returns>
+            <returns>A JSON object representing the hot feed in reddit</returns>
         </member>
     </members>
 </doc>
