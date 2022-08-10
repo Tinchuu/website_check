@@ -39,8 +39,11 @@ namespace website_check
                 client.BaseAddress = new Uri(Configuration["RedditAddress"]);
             });
 
+            services.AddHttpClient(Configuration["UniversityClientName"], configureClient: client =>
+            {
+                client.BaseAddress = new Uri(Configuration["UniversityAddress"]);
+            });
 
-        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

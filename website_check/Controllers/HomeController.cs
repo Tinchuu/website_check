@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using website_check.Models;
 
 namespace MSA.Phase2.AmazingApi.Controllers
 {
@@ -9,33 +14,34 @@ namespace MSA.Phase2.AmazingApi.Controllers
     [Route("[controller]")]
     public class DemonstrationController : ControllerBase
     {
+        private readonly HttpClient _client;
 
-        /// <summary>
-        /// Adds two numbers together
-        /// </summary>
-        /// <param name="left">The number on the left, which must be a positive integer</param>
-        /// <param name="right">The number on the right, which must be a positive integer</param>
-        /// <returns>The sum of the input numbers</returns>
-        [HttpGet]
-        [Route("add")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        public IActionResult GetSum(int left, int right)
+        public DemonstrationController(IHttpClientFactory clientFactory)
         {
-            if (left < 0 || right < 0) return BadRequest("The inputs must be greater than zero");
-
-            return Ok(left + right);
+            if (clientFactory is null)
+            {
+                throw new ArgumentNullException(nameof(clientFactory));
+            }
+            _client = clientFactory.CreateClient("uni");
         }
 
         /// <summary>
-        /// Generates a random number
+        /// Returns all universities in a country
+        /// <param name="Country">Country to Check</param>
         /// </summary>
-        /// <returns>A random number</returns>
+        /// <returns>The universities</returns>
         [HttpGet]
         [ProducesResponseType(200)]
-        public IActionResult GetNumber()
+        public async Task<IActionResult> GetNumberAsync(string input)
+
         {
-            return Ok(new Random().NextDouble());
+            var res = await _client.GetAsync("search?country=" + input);
+            var content = await res.Content.ReadAsStringAsync();
+
+            Console.WriteLine(content);
+            List<University> universities = JsonConvert.DeserializeObject<List<University>>(content);
+
+            return Ok(universities);
         }
 
         /// <summary>
