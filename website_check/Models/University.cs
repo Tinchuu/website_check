@@ -13,5 +13,16 @@ namespace website_check.Models
         public List<string> domains { get; set; }
         public string country { get; set; }
         public string name { get; set; }
+
+        public string printAll()
+        {
+            string pages = "";
+            foreach (string current in web_pages)
+            {
+                pages += current + " ";
+            }
+            return name + ": " + pages;
+        }
+
     }
 }

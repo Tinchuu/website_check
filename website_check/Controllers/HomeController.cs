@@ -25,11 +25,12 @@ namespace MSA.Phase2.AmazingApi.Controllers
             _client = clientFactory.CreateClient("uni");
         }
 
+
         /// <summary>
-        /// Returns all universities in a country
+        /// Returns all the websites of universities in a country
         /// <param name="Country">Country to Check</param>
         /// </summary>
-        /// <returns>The universities</returns>
+        /// <returns>Universites and their corresponding websites</returns>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<IActionResult> GetNumberAsync(string input)
@@ -37,12 +38,22 @@ namespace MSA.Phase2.AmazingApi.Controllers
         {
             var res = await _client.GetAsync("search?country=" + input);
             var content = await res.Content.ReadAsStringAsync();
+            string output = "";
+            int i = 1;
 
             Console.WriteLine(content);
             List<University> universities = JsonConvert.DeserializeObject<List<University>>(content);
 
-            return Ok(universities);
+            foreach (University current in universities)
+            {
+                output += i + ". " + current.printAll();
+                i++;
+            }
+
+            return Ok(output);
         }
+
+
 
         /// <summary>
         /// Demonstrates posting action
