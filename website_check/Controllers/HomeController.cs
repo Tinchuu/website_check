@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ namespace MSA.Phase2.AmazingApi.Controllers
 
     [ApiController]
     [Route("[controller]")]
-    public class DemonstrationController : ControllerBase
+    public class UniversityController : ControllerBase
     {
         private readonly HttpClient _client;
 
-        public DemonstrationController(IHttpClientFactory clientFactory)
+        public UniversityController(IHttpClientFactory clientFactory)
         {
             if (clientFactory is null)
             {
@@ -63,8 +64,50 @@ namespace MSA.Phase2.AmazingApi.Controllers
         [ProducesResponseType(201)]
         public IActionResult DemonstratePost()
         {
-            Console.WriteLine("I'm doing some work right now to create a new thing...");
+            var pain = "";
+            var connectionStringBuilder = new SqliteConnectionStringBuilder();
+            connectionStringBuilder.DataSource = "";
 
+            SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_dynamic_cdecl());
+
+            using (var connection = new SqliteConnection(connectionStringBuilder.ConnectionString))
+            {
+                connection.Open();
+
+                var tableCmd = connection.CreateCommand();
+                tableCmd.CommandText = "CREATE TABLE man(name VARCHAR(50)";
+                tableCmd.ExecuteNonQuery();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    var insertCmd = connection.CreateCommand();
+                    tableCmd.CommandText = "INSERT INTO man VALUES('PAI AND SUFFERING')";
+                    tableCmd.ExecuteNonQuery();
+
+                    tableCmd.CommandText = "INSERT INTO man VALUES('PsdfND SUFFERING')";
+                    tableCmd.ExecuteNonQuery();
+
+                    tableCmd.CommandText = "INSERT INTO man VALUES('PAI AasdfsdfERING')";
+                    tableCmd.ExecuteNonQuery();
+
+                    transaction.Commit();
+                }
+
+                var selectCmd = connection.CreateCommand();
+                selectCmd.CommandText = "SELECT * FROM man";
+
+                using (var reader = selectCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var result = reader.GetString(0);
+                        Console.WriteLine(result);
+
+                    }
+                }
+            }
+
+            
             return Created(new Uri("https://www.google.com"), "Hi There");
         }
 

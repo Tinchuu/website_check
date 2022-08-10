@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using website_check.Models;
 
 namespace website_check
 {
@@ -27,16 +28,12 @@ namespace website_check
         {
             services.AddControllers();
 
+
             services.AddSwaggerDocument(options =>
             {
-                options.DocumentName = "Website Checker";
+                options.DocumentName = "Uni Website Checker";
                 options.Version = "V1";
 
-            });
-
-            services.AddHttpClient(Configuration["RedditClientName"], configureClient: client =>
-            {
-                client.BaseAddress = new Uri(Configuration["RedditAddress"]);
             });
 
             services.AddHttpClient(Configuration["UniversityClientName"], configureClient: client =>
